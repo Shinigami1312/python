@@ -1,0 +1,49 @@
+t=int(input())
+for a in range(t):
+    n=int(input())
+    z=[]
+    ans=[]
+    for b in range(n):
+        p=[int(s) for s in input().strip().split(" ")]
+        z.append(p)
+        
+    def sortlist(z):
+        for ab in range(len(z)):
+            for ac in range(0,len(z)-ab-1):
+                if(z[ac][0]>z[ac+1][0]):
+                    t=z[ac]
+                    z[ac]=z[ac+1]
+                    z[ac+1]=t
+        return z
+    sortlist(z)
+    print(z)
+    sc=-1
+    ec=-1
+    sj=-1
+    ej=-1
+    for i in range(n):
+        x=z[i][0]
+        y=z[i][1]
+        p=z[i+1]
+        ll=[]
+        if(sc<x and sc<y and ec<=x and ec<y):
+            ll.append(p)
+            ll.append('C')
+            ans.append(ll)
+            sc=x
+            ec=y
+        elif(sj<x and sj<y and ej<=x and ej<y):
+            ll.append(p)
+            ll.append('J')
+            ans.append(ll)
+            sj=x
+            ej=y
+        else:
+            print("Case #{0}: {1}".format(a+1,'IMPOSSIBLE'))
+    
+    sortlist(ans)
+    a1=''
+    for q in range(n):
+        a1+=ans[q][q+1]
+        
+    print("Case #{0}: {1}".format(a+1,a1))
