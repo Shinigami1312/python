@@ -1,0 +1,39 @@
+import numpy as np
+t=int(input())
+k=[]
+r=[]
+c=[]
+for i in range(0,t):
+    n=int(input())
+    l=[]
+    for x in range(n):
+        entry=list(map(int,input().split()))
+        l.append(entry)
+    mat=np.array(l).reshape(n,n)
+
+    tr=mat.trace()
+    k.append(tr)
+    row=0
+    col=0
+    ll=mat.tolist()
+
+    
+    for j in range(n):
+        a=ll[j]
+        a=set(a)
+        if(len(a)!=n):
+            row=row+1
+    
+    r.append(row)
+    b=mat.transpose()
+    ll1=b.tolist()
+
+    for j in range(n):
+        a=ll1[j]
+        a=set(a)
+        if(len(a)!=n):
+            col=col+1
+    
+    c.append(col)
+for i in range(t):
+    print("Case #{0}: {1} {2} {3}".format(i+1,k[i],r[i],c[i]))
